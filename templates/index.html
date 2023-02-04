@@ -74,7 +74,7 @@
         function listing() {
             $.ajax({
                 type: 'GET',
-                url: '/search_box',
+                url: '/search',
                 data: {},
                 success: function (response) {
                     let rows = response['search_box']
@@ -150,10 +150,8 @@
 
 <div class="wrap">
     <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
-
         </div>
     </div>
-</div>
 
 <p>
 <div>
