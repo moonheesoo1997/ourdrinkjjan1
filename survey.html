@@ -45,7 +45,7 @@
             scrollTop: 0
         }, 400);
 
-        $('.swiper-wrapper .swiper-slide').last().find('.Quizcontent').addClass('last-contents');
+        $('.swiper-wrapper .swiper-slide').last().find('.Quizcontent3').addClass('last-contents');
     }
 
     function notyet() {
@@ -349,7 +349,7 @@
 
                         <label class="Quizcontent Num5" data-swiper-parallax="-800" for="nosoda">
                             <div class="shape Quiz_anwer">
-                                <input class="Quizcontent3" id="nosoda" type="radio" name="soda" value="O"> X
+                                <input class="Quizcontent3" id="nosoda" type="radio" name="soda" value="X"> X
                             </div>
                         </label>
                     </div>
@@ -396,13 +396,23 @@
             // var Opacity = document.getElementsByClassName('swiper-slide');
             // var sum = 0;
 
+            let json = new Object();
+
                 let type = $('input[name=type]:checked').val();
                 let alcohol = $('input[name=alcohol]:checked').val();
                 let scent = $('input[name=scent]:checked').val();
-                let taste = $('input[name=taste]:checked').val();
                 let soda = $('input[name=soda]:checked').val();
+                let taste = $('input[name=taste]:checked').val();
 
-                console.log(type, alcohol, scent, soda,taste);
+                json.type = type;
+                json.alcohol = alcohol;
+                json.scent = scent;
+                json.soda = soda;
+                json.taste = taste; 
+                
+            
+
+                alert(JSON.stringify(json));
 
             // sum 칠 value 값
             // const target = $('.QuizContent_area .active input');
