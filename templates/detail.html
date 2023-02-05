@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <title>우리술,짠</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap"
+          rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Noto Serif KR', serif;
+        }
+        .mypic {
+            width: 60%;
+            height: 100px;
+
+            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
+            background-position: center 100%;
+            background-size: cover;
+            margin-top: 50px;
+            color: black;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .line {
+            width: 60%;
+            margin: auto;
+
+        }
+        .soolimg {
+            margin : 60px;
+            margin-left : 100px;
+                 }
+         .img-thumbnail {
+            border: 0;
+            width: 200px;
+        }
+        .wrap {
+            height: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 60%;
+
+        }
+        .soolspecindex {
+            margin-left: 200px;
+            width : 20%;
+
+        }
+        .share {
+
+            width: 40%;
+            margin-left: 500px;
+        }
+        .realdetail {
+            width: 60%;
+            justify-content: center;
+            margin-left: auto;
+            margin-right: auto;
+            min-width: 60%;
+        }
+        .mypost {
+            width: 60%;
+            max-width: 80%;
+            margin: 20px auto 20px auto;
+
+            box-shadow: 0px 0px 3px 0px black;
+            padding: 20px;
+        }
+
+        .mypost > button {
+            margin-top: 15px;
+        }
+
+        .mycards {
+            width: 60%;
+            max-width: 80%;
+            margin: auto;
+        }
+
+        .mycards > .card {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+
+</head>
+<body>
+<div class="mypic">
+        <h1>{{Productname}}</h1>
+    </div>
+
+    <div class="line">
+        <hr>
+    </div>
+
+    <div class="wrap">
+        <div class = "soolimg">
+            <img src="{{imageLink}}" class="img-thumbnail"
+                 alt="..."style="float: left">
+        </div>
+
+        <sapn class="soolspecindex"style="float: left">
+            <h5 style="line-height: 300%">&#8226; 종  류  </h5>
+            <h5 style="line-height: 300%">&#8226; 알콜도수  </h5>
+            <h5 style="line-height: 300%">&#8226; 용  량  </h5>
+        </sapn>
+
+        <span class="soolspec">
+            <h5 style="line-height: 300%">   {{type}}</h5>
+            <h5 style="line-height: 300%"> {{alcohol}}%</h5>
+            <h5 style="line-height: 300%"> {{capacity}}</h5>
+        </span>
+
+        <div class="share">
+            <img onclick="shareTwitter()" src="../static/icon-twitter.png" id="shareTw" class="btn_comm">
+            <img src="../static/icon-facebook.png" id="sharefb" class="btn_comm">
+            <img src="../static/icon-kakao.png" id="sharekt" class="btn_comm">
+        </div>
+    </div>
+
+
+    <div class="line">
+        <hr>
+    </div>
+
+    <div class="realdetail">
+        <h6>{{intro}}</h6>
+    </div>
+
+    <div class="line">
+        <hr>
+    </div>
+
+    <div class="mycards" id="comment-list">
+
+    </div>
+    <div class="mypost">
+        <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="name" placeholder="url">
+            <label for="name">닉네임</label>
+        </div>
+
+        <div class="form-floating">
+                <textarea tabindex="4" class="form-control" placeholder="Leave a comment here" id="comment"
+                  style="height: 100px">
+                </textarea>
+            <label for="comment">댓글을 입력하세요.</label>
+        </div>
+
+        <button onclick="save_comment()" type="button" class="btn btn-dark">등록</button>
+    </div>
+
+
+<script>
+
+    const productId = {{ Productid }}
+    const productName = "{{ Productname }}"
+    const imageLink = "{{ imageLink }}"
+    const intro = "{{ intro }}"
+
+    Kakao.init('ea8ddd115b131a54cb171b0114d15244');
+
+    Kakao.Link.createDefaultButton({
+        container: '#sharekt',
+        objectType: 'feed',
+        content: {
+            title: productName,
+            description: intro,
+            imageUrl: imageLink,
+            link: {
+                mobileWebUrl: location.href,
+                webUrl: location.href
+            }
+        },
+
+
+        buttons: [
+        {
+            title: '상세 정보 확인하기🍶',
+            link: {
+                mobileWebUrl: location.href,
+                webUrl: location.href
+            }
+        }
+    ]
+    });
+
+    $(document).ready(function () {
+
+        show_comment()
+    });
+
+    // function get_sool_detail() {
+    //
+    //     $.ajax({
+    //         type: 'GET',
+    //         url: '/detail/',
+    //         data: {name_give: name, comment_give: comment},
+    //         success: function (response) {
+    //             alert(response['msg'])
+    //             window.location.reload()
+    //         }
+    //     })
+    // }
+
+    function save_comment() {
+
+        let name = $("#name").val();
+        let comment = $("#comment").val();
+
+        $.ajax({
+            type: 'POST',
+            url: '/detail',
+            data: {
+                product_id: productId,
+                name_give: name,
+                comment_give: comment},
+            success: function (response) {
+                alert(response['msg'])
+                window.location.reload()
+            }
+        })
+    }
+
+    function show_comment() {
+        $.ajax({
+            type: "GET",
+            url: "/detail/" + productId + "/comments",
+            success: function (response) {
+
+                // TODO: comment-list to tag data
+
+                let rows = response['comments']
+
+                for(let i=0; i< rows.length; i++){
+                    console.log(rows[i])
+                }
+
+                for (let i = 0; i < rows.length; i++) {
+
+                    let name = rows[i]['name']
+                    let comment = rows[i]['comment']
+
+                    let temp_html = `<div class="card">
+                                            <div class="card-body">
+                                                <blockquote class="blockquote mb-0">
+                                                    <p>${comment}</p>
+                                                    <footer class="blockquote-footer">${name}</footer>
+                                                </blockquote>
+                                            </div>
+                                        </div>`
+                    $('#comment-list').append(temp_html)
+                }
+            }
+        });
+    }
+
+    function shareTwitter() {
+
+        const btnShareTw = document.querySelector('#shareTw');
+
+        btnShareTw.addEventListener('click', () => {
+            const sendText = '나만의 술 추천';
+
+            const pageUrl = '';
+            window.open(`https://twitter.com/intent/tweet?text=${sendText}&url=${pageUrl}`);
+        })
+    }
+
+</script>
+</body>
+
+</html>
