@@ -40,12 +40,12 @@
             margin: 20px auto 0px auto;
 
         }
+
         .card-img-top {
             min-height: 300px;
             max-height: 300px;
 
         }
-
 
 
         .btns {
@@ -75,6 +75,7 @@
     <script>
         $(document).ready(function () {
             listing();
+            searching();
         });
 
         function listing() {
@@ -84,6 +85,40 @@
                 data: {},
                 success: function (response) {
                     let rows = response['search_box']
+                    for (let i = 0; i < rows.length; i++) {
+                        let intro = rows[i]['intro']
+                        let productName = rows[i]['productName']
+                        let type = rows[i]['type']
+                        let imageLink = rows[i]['imageLink']
+                        let alcohol = rows[i]['alcohol']
+
+                        let temp_html = `<div class="col">
+                                            <div class="card">
+                                                <img src="${imageLink}"
+                                                     class="card-img-top" alt="..." >
+                                                <div class="card-body">
+                                                    <h5 class="card-title">${productName}</h5>
+                                                    <p class="card-text">${alcohol}도/${type}</p>
+                                                    <p class="mycoment">${intro}</p>
+                                                </div>
+                                            </div>
+                                        </div>`
+                        $('#cards-box').append(temp_html)
+                    }
+                }
+            })
+        }
+
+        function searching() {
+            $('#cards-box').empty()
+            let searchs = $('#searchs').val()
+
+            $.ajax({
+                type: 'GET',
+                url: '/?',
+                data: {searchs_give: searchs},
+                success: function (response) {
+                    let rows = response['finding_box']
                     for (let i = 0; i < rows.length; i++) {
                         let intro = rows[i]['intro']
                         let productName = rows[i]['productName']
@@ -120,9 +155,9 @@
     <h1>우리술,짠</h1>
     <nav class="navbar bg-light">
         <div class="container-fluid">
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button  id="search" class="btn btn-outline-success" type="submit">Search</button>
+            <form class="d-flex" role="search" >
+                <input id="searchs" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button onclick="searching()" class="btn btn-outline-success" type="button">Search</button>
             </form>
         </div>
     </nav>
@@ -156,9 +191,8 @@
 
 <div class="wrap">
     <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
-        </div>
     </div>
-
+</div>
 
 
 </body>
