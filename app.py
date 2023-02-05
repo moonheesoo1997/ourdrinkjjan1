@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, jsonify
+import pandas as pd
 
 app = Flask(__name__)
 
@@ -23,10 +24,12 @@ def search_get():
 
 @app.route("/?", methods=["GET"])
 def finding_get():
+    searchs_receive = request.form['searchs_give']
+    data = list(db.search_box.find({}, {'_id': False}))
+    df = pd.DataFrame(data)
+    finding_list = df[df['productName'].str.contains(searchs_receive)]
 
-    finding_list = dataset[dataset['productName'].str.contains( 'searchs_give', na = False)]
-
-    print(finding_list)
+    return jsonify({'finding_box': finding_list})
 
 
 if __name__ == '__main__':
