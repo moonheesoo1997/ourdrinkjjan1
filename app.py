@@ -24,8 +24,8 @@ def search_get():
 
 @app.route("/finding", methods=["GET"])
 def finding_get():
-
-    finding_list = list(db.search_box.find({'productName':{'$regex':request.args.get["finding"]}}, {'_id': False}))
+    x = request.args.get("finding","",type=str)
+    finding_list = list(db.search_box.find({'productName':{'$regex':x}}, {'_id': False}))
     return jsonify({'finding_box': finding_list})
 
 
