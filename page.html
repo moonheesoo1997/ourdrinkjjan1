@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+	<meta charset="utf-8" URLEncoding="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width, user-scalable=no">
+	<title>당신과 어울리는 전통주를 찾아보세요! - 결과보기</title>
+
+	<!-- css -->
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/page.css">
+
+	<!-- font -->
+	<link href="https://webfontworld.github.io/naver/NanumSquareRound.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css">
+
+	<!-- META -->
+	<meta property="og:type" content="website">
+    <meta property="og:title" content="당신과 어울리는 전통주를 찾아보세요! - 결과보기">
+    <meta property="og:description" content="우리술, 짠">
+	<meta property="og:image" content="img/MetaImg.jpg">
+
+	<!-- jquery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<!-- kakao -->
+	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+	<script>
+		//점수 파라미터값 추출
+		var ParamScore = location.search.split(/[?&]/).slice(1).map(function (paramPair) {
+			return paramPair.split(/=(.+)?/).slice(0, 2);
+		}).reduce(function (obj, pairArray) {
+			obj[pairArray[0]] = pairArray[1];
+			return obj;
+		}, {});
+		var result = ParamScore.ScoreView;
+
+		
+		if(result == null){
+			alert('정상적인 접근이 아닙니다.');
+			location.href= "index.html";
+		}else{
+			 //var ScoreView = atob(result);
+			 var ScoreView = result;
+			if(isNaN(ScoreView)){
+				alert('정상적인 접근이 아닙니다.');
+				location.href= "index.html";
+			}
+			else{
+				$(document).ready(function () {
+					var LevScore = $('#LevScore').text(ScoreView);
+					var text = LevScore.text();  
+
+					var TextControl = document.getElementById("wrap");
+					var graph = document.getElementsByClassName('score-graph');
+		
+		
+					
+		
+					var Lev = '';
+					var graphScore = '';
+					if(ScoreView >= 560){
+						var Lev = 'lev5';
+						var graphScore = 100;
+					}
+					else if(ScoreView >= 460){
+						var Lev = 'lev4';
+						var graphScore = 75;
+					}
+					else if(ScoreView >= 400){
+						var Lev = 'lev3';
+						var graphScore = 50;
+					}
+					else if(ScoreView >= 300){
+						var Lev = 'lev2';
+						var graphScore = 25;
+					}
+					else if(ScoreView >= 240){
+						var Lev = 'lev1';
+						var graphScore = 2;
+					}
+					else if(ScoreView !== null){
+						alert('정상적인 접근이 아닙니다.');
+						location.href= "index.html";
+					}
+						TextControl.className += ' '+ Lev;
+						$('.result-text').load( Lev + '.html');
+						let theme = document.querySelector(':root');
+						let styles = getComputedStyle(theme);
+						theme.style.setProperty('--my-score-width', graphScore + '%');
+
+					}); 
+			}
+		}
+
+
+		//파라미터 HTML 내 점수로 보여주기
+		$(document).ready(function () {
+			$('#LevScore').text(ScoreView);
+		});
+
+		//popup 열기
+		$(document).on('click', ".sns-view", function () {
+			$(".sns-bg").css({
+				display: "block"
+			});
+		});
+
+		//popup 닫기
+		$(document).on('click', ".sns-bg-close", function () {
+			$(".sns-bg").css({
+				display: "none"
+			});
+		});
+	</script>
+
+	<script>
+		// 공유하기
+		//facebook
+		function facebook() {
+//			var url = location.href.split('#');
+//			var title = document.title;
+		//window.open('http://www.facebook.com/sharer/sharer.php?u=' + url[0] + '&t=' + title,'',
+//				'width=500,height=500,left=0,top=0');
+//				const searchParams = new URLSearchParams(location.search);
+
+			var url = window.location.href; // 공유할 URL	
+			var aencodeUrl = encodeURIComponent(url);
+			//var aencodeUrl = url;
+			var facebookUrl = "http://www.facebook.com/sharer/sharer.php?u=";
+			window.open( facebookUrl + aencodeUrl,'', 'width=500,height=500,left=0,top=0');
+
+		}
+
+		//naverblog
+		function naver() {
+			var url = location.href.split('');
+			var title = document.title;
+			window.open('https://share.naver.com/web/shareView.nhn?url=' + url[0] + '&title=' + title, '',
+				'width=500,height=500,left=0,top=0');
+		}
+
+		// function band() {
+		// 	var thisUrl = document.URL;
+		// 	var url = "http://www.band.us/plugin/share?body="+"&route="+encodeURIComponent(thisUrl);
+        // 	window.open(url, "shareBand", "width=400, height=500, resizable=yes");
+		// }
+
+
+		
+		//결과
+		$(function () {
+			var TextControl = document.getElementById("wrap");
+			var LevScore = document.getElementById("LevScore");
+
+			if (ScoreView >= 140) {
+				$('.result-text').load('lev4.html');
+			} else if (ScoreView >= 100) {
+				$('.result-text').load('lev3.html');
+			} else if (ScoreView >= 70) {
+				$('.result-text').load('lev2.html');
+			} else {
+				$('.result-text').load('lev1.html');
+			}
+		});
+
+		// 그래프 CSS 변수
+
+	</script>
+
+</head>
+
+<style>
+
+	:root {
+			--my-score-width : 10%;
+	}
+	
+	.score-graph {
+		width: var( --my-score-width );
+	}
+
+	#untree_co--overlayer {
+		width: 100%;
+		height: 100%;
+		pointer-events: none;
+		position: fixed;
+		z-index: 7100;
+		display: flex;
+		background: #ffffff;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		transition: all 0.8s 1.0s cubic-bezier(0.93, -0.01, 0.91, 0.61);
+		justify-content: center;
+		align-items: center;
+		animation: OverView 0.3s 3s ease-in-out forwards;
+	}
+
+	.loader {
+		z-index: 7700;
+		position: absolute;
+		-ms-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);
+	}
+
+	/*-------------------------------------------
+    $ Loaders
+-------------------------------------------*/
+
+	.loader {
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		/* margin: 3em; */
+		display: inline-block;
+		position: relative;
+		vertical-align: middle;
+	}
+
+	.loader,
+	.loader:before,
+	.loader:after {
+		animation: 1s infinite ease-in-out;
+	}
+
+	.loader:before,
+	.loader:after {
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+
+	/* Loader 7 */
+
+	.loader-7 {
+		animation: loader7-1 1s infinite linear;
+	}
+
+	.loader-7:before,
+	.loader-7:after {
+		content: '';
+		width: 80%;
+		height: 80%;
+		top: 5%;
+	}
+
+	
+
+	.loader-7:before {
+		left: -5%;
+		animation: loader7-2 1s infinite alternate ease-in-out;
+		transform-origin: 10% 50%;
+		background-color: rgb(182, 52, 52);
+	}
+
+	.loader-7:after {
+		left: auto;
+		right: -5%;
+		animation: loader7-2 1s 1s infinite alternate ease-in-out;
+		transform: scale(0);
+		transform-origin: 90% 50%;
+		background-color: #333;
+	}
+
+	@keyframes loader7-1 {
+		0% {
+			transform: rotate(20deg);
+		}
+
+		100% {
+			transform: rotate(380deg);
+		}
+	}
+
+	@keyframes loader7-2 {
+		0% {
+			transform: scale(0);
+		}
+
+		100% {
+			transform: scale(1);
+		}
+	}
+
+	@keyframes OverView {
+		0%{
+			opacity: 1;
+		}
+		100%{
+			opacity: 0;
+		}
+	}
+
+	@keyframes LoaderView {
+		0%{
+			opacity: 0;
+		}
+		100%{
+			opacity: 1;
+		}
+	}
+
+	
+
+	.position-center {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		animation: LoaderView 0.5s  ease-in-out forwards;
+	}
+
+	.loader-text {
+		margin-top: 50px;
+	}
+
+	.score-area1{
+		background: rgb(247 247 247);
+		width: calc(100% - 30px);
+		margin: 0 auto;
+		padding: 15px 15px;
+		border: 1px solid #e5e4e4;
+		border-radius: 2em;
+	}
+
+	.my-sum{
+		text-align: center;
+		margin-bottom: 5em;
+	}
+
+	@keyframes view {
+		0%{
+			opacity: 0;
+			transform: translateY(-200px);
+		}
+		100%{
+			opacity: 1;
+			transform: translateY(0px);
+		}
+	}
+</style>
+
+<body>
+
+
+	<div id="wrap" class="wrap">
+		<div class="result-page"></div>
+		<div class="show-ani">
+			<div class="score-area">
+				당신의 알콜러버 점수는 560점 만점 중<br><span id="LevScore" class="ScoreView" URLEncoding="UTF-8">undefined</span>점 입니다.
+			</div>
+
+			<div class="score-area1">
+				<div class="score-graph">
+					<div class="graph-line">
+						<div class="graph-icon">
+							<img src="img/arrow.png" alt="위치">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="graph-info">
+				<span>0%</span>
+
+				<span>100%</span>
+			</div>
+		</div>
+			<div class="show-ani shadow2">
+				<div id="result-text" class="result-text"></div>
+				<div class="return-page">
+					<div class="return-button" onclick="location.href='index.html'" style="width: 100%;">다시하기</div>
+				</div>
+			</div>
+
+
+	
+
+		<div class="sns-area">
+
+			<div class="sns-title">결과 공유하기</div>
+
+			<ul>
+
+				<li id="kakao-link-btn">
+					<div class="content">
+						<img src="img/kakao.png" alt="">
+					</div>
+				</li>
+
+				<li onclick="facebook()">
+					<div class="content">
+						<img src="img/facebook.png" alt="">
+					</div>
+				</li>
+
+				<li onclick="naver()">
+					<div class="content">
+						<img src="img/blog.png" alt="">
+					</div>
+				</li>
+
+				<li>
+					<a href="#" onclick="javascript:window.open('http://band.us/plugin/share?body=' 
+					+encodeURIComponent(document.title)+encodeURIComponent('\r\n')+encodeURIComponent(document.URL)+'&route='+encodeURIComponent(document.URL), 
+					'naversharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600'); 
+					return false; " target="_blank" 
+					alt="네이버 밴드에 공유하기" rel="nofollow">
+					<div class="content">
+					<img src="img/band.png"  alt='네이버 밴드에 공유하기'>
+				</div>
+				</a>
+				</li>
+
+			</ul>
+		</div>
+		<div class="PageInfo">본 이벤트는 중복참가는 불가합니다</div>
+	</div>
+</body>
+
+<script>
+	Kakao.init('ddca0fafcdcd838ee2d45f097937b5d8');
+        
+	Kakao.Link.createDefaultButton({
+		container: '#kakao-link-btn',
+		objectType: 'feed',
+		content: {
+		title: '당신과 어울리는 술은? - 결과보기',
+		description: '멘탈테스트-이모저모',
+		imageUrl:'https://www.menteimo.com/ver18/img/main.jpg',
+		link: {
+						mobileWebUrl: location.href,
+						webUrl: location.href
+			  }
+		},
+
+		buttons: [
+			{
+				title: '결과보러 가기',
+				link: {
+					mobileWebUrl: location.href,
+					webUrl: location.href
+				}
+			}
+		]
+	});
+</script>

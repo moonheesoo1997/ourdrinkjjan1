@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>우리 술, 짠</title>
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/index.css">
+
+<!-- META -->
+<meta property="og:type" content="feed">
+<meta property="og:title" content="당신과 어울리는 전통주는?">
+    
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- cdn -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- kakao -->
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+</head>
+
+<script>
+    // 공유하기
+    //facebook
+    function facebook() {
+        var url = location.href.split('#');
+        var title = document.title;
+        window.open('http://www.facebook.com/sharer/sharer.php?u=' + url[0] + '&t=' + title, '',
+            'width=500,height=500,left=0,top=0');
+    }
+
+    //naverblog
+    function naver() {
+        var url = location.href.split('');
+        var title = document.title;
+        window.open('https://share.naver.com/web/shareView.nhn?url=' + url[0] + '&title=' + title, '',
+            'width=500,height=500,left=0,top=0');
+    }
+
+
+    function start() {
+        var Starting = document.getElementById('start');
+        Starting.className += " NonDiv";
+        setTimeout(function () {
+            Starting.style.display = "none";
+        }, 700);
+        if (Starting.classList.contains("NonDiv")) {
+            document.getElementById('StartDiv').classList += ' StartDiv';
+        } else {
+            alert('다시 시도해주세요');
+        }
+        $('html, body').animate({
+            scrollTop: 0
+        }, 400);
+
+        $('.swiper-wrapper .swiper-slide').last().find('.Quizcontent').addClass('last-contents');
+    }
+
+    function notyet() {
+        alert('구현 중');
+    }
+
+    function clip() {
+        var url = '';
+        var textarea = document.createElement("textarea");
+        document.body.appendChild(textarea);
+        url = window.document.location.href;
+        textarea.value = url;
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+        alert("URL이 복사되었습니다.")
+    }
+
+
+    // 점수
+    $(document).ready(function () {
+        $('.true').val('70');
+        $('.false').val('30');
+    });
+
+    function Nextslide() {
+      
+    }
+    $(function () {
+
+        $('.Quizcontent').off().on('click', function () {
+            $('.swiper-wrapper').css({
+                'pointer-events': 'none'
+            });
+
+            $(this).addClass('active');
+            $(this).siblings('.Quizcontent').addClass('UnActive');
+
+            setTimeout(function () {
+                swiper.slideNext();
+                return;
+            }, 400);
+
+
+            var QuizThis = $(this).addClass('active');
+            setTimeout(function () {
+                $('.swiper-wrapper').css({
+                    'pointer-events': 'auto'
+                });
+            }, 1500);
+        });
+
+    });
+</script>
+
+<body>
+
+
+
+    <div id="untree_co--overlayer">
+        <div class="position-center">
+            <div class="loader loader-7"></div>
+
+            <div class="loader-text">결과 계산 중</div>
+        </div>
+    </div>
+
+    <div class="wrap">
+        <div class="QuizContent_area aaaf" id="start">
+
+            <div class="QuizImg-area" style="box-shadow: none;">
+                <img src="img/main.jpg" alt="">
+            </div>
+
+            <div class="sns-area">
+                <div class="sns-title">SNS 공유하기</div>
+                <ul>
+                    <li id="kakao-link-btn">
+                        <div class="content">
+                            <img src="img/kakao.png" alt="">
+                        </div>
+                    </li>
+
+                    <li onclick="facebook()">
+                        <div class="content">
+                            <img src="img/facebook.png" alt="">
+                        </div>
+                    </li>
+
+                    <li onclick="naver()">
+                        <div class="content">
+                            <img src="img/blog.png" alt="">
+                        </div>
+                    </li>
+
+                    <li>
+                        <a href="#" onclick="javascript:window.open('http://band.us/plugin/share?body=' 
+                        +encodeURIComponent(document.title)+encodeURIComponent('\r\n')+encodeURIComponent(document.URL)+'&route='+encodeURIComponent(document.URL), 
+                        'naversharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600'); 
+                        return false; " target="_blank" 
+                        alt="네이버 밴드에 공유하기" rel="nofollow">
+                        <div class="content">
+                        <img src="img/band.png"  alt='네이버 밴드에 공유하기'>
+                    </div>
+                    </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="Button2deps">
+                <div class="Quizcontent2 " data-swiper-parallax="-200" onclick="window.open('../index.php')">다른 테스트 하러가기
+                </div>
+                <div class="Quizcontent2 " data-swiper-parallax="-200" onclick="clip()">링크복사 하기</div>
+            </div>
+
+
+            <div class="Quizcontent2 StartButton" data-swiper-parallax="-200" onclick="start()" style="padding: 25px 0px;
+            color: #fff;
+            padding: 25px 0px;
+            background: #001b51;">당신과 어울리는 전통주를 찾아보세요!</div>
+
+            <div class="footer">
+                우리술, 짠 <br>
+                by. PM camp B반 7팀 chill한 마을 양조장 <br>
+                
+            </div>
+        </div>
+
+        <!-- Swiper -->
+        <div class="swiper-container aaaf" id="StartDiv">
+            <div class="swiper-wrapper">
+
+                <!-- 1번 문항 -->
+                <div class="swiper-slide">
+                    <div class="QuizContent_area first-aniamtion ">
+                        <div class="QuizImg-area ScaleDiv" data-swiper-parallax="-900">
+                            <img src="img/quiz_1.jpg" alt="">
+                        </div>
+                        <div class="QuizText ScaleDiv">
+                            <span>Q1.</span>
+                            <br>
+                            분위기에 이끌려 우연히 들어간 카페. <br>메뉴가 2개만 있다. <br><br>당신의 선택은?
+                        </div>
+                        <div class="Quizcontent ScaleDiv Num1" data-swiper-parallax="-200">
+                            <div class="Quiz_anwer">
+                                <div class="shape"></div>
+                                여기가 바로 유럽! 에스프레소
+                            </div>
+                            <input type="hidden" class="true">
+                        </div>
+                        <div class="Quizcontent ScaleDiv Num1" data-swiper-parallax="-600">
+                            <div class="Quiz_anwer">
+                                아메아메아메~ 아메리카노
+                            </div>
+                            <input type="hidden" class="false">
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- 2번 문항 -->
+                <div class="swiper-slide">
+                    <div class="QuizContent_area">
+                        <div class="QuizImg-area ScaleDiv" data-swiper-parallax="-900">
+                            <img src="img/quiz_2.jpg" alt="">
+                        </div>
+
+                        <div class="QuizText">
+                            <span>Q2.</span>
+                            <br>
+                            <!-- <span class="point">'원하는 곳에서 업무와 휴가를 동시에 할 수 있는 새로운 근무제도'</span>라는 뜻을 가진 신조어는? -->
+                            급하다 급해! 술을 딱 한 잔을 마실 수 있다.<br><br>당신의 선택은?
+                        </div>
+                        <div class="Quizcontent Num2" data-swiper-parallax="-400">
+                            <input type="hidden" class="true">
+                            <div class="Quiz_anwer">묵직하고 깊이감 있는 술</div>
+                        </div>
+
+                        <div class="Quizcontent Num2" data-swiper-parallax="-200">
+                            <div class="Quiz_anwer">상큼달달 가벼운 술</div>
+                            <input type="hidden" class="false">
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- 3번 문항 -->
+                <div class="swiper-slide">
+                    <div class="QuizContent_area">
+                        <div class="QuizImg-area ScaleDiv" data-swiper-parallax="-900">
+                            <img src="img/quiz_3.jpg" alt="">
+                        </div>
+
+                        <div class="QuizText">
+                            <span>Q3.</span>
+                            <br>
+                           
+                            친구와 어떤 가게에 들어왔다. <br>수많은 칵테일 중 눈에 띄는 이것!<br><br> 당신의 선택은?
+                        </div>
+
+
+                        <div class="Quizcontent Num3" data-swiper-parallax="-400">
+                            <input type="hidden" class="false">
+                            <div class="Quiz_anwer">나는 007의 제임스 본드가 되겠어~ 쌉쌀하고 산뜻한 마티니</div>
+                        </div>
+
+                        <div class="Quizcontent Num3" data-swiper-parallax="-600">
+                            <div class="Quiz_anwer">상큼한 레몬향이 퍼지네! 과일이 가득한 미도리샤워</div>
+                            <input type="hidden" class="false">
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- 4번 문항 -->
+                <div class="swiper-slide">
+                    <div class="QuizContent_area">
+                        <div class="QuizImg-area ScaleDiv" data-swiper-parallax="-900">
+                            <img src="img/quiz_4.jpg" alt="">
+                        </div>
+
+                        <div class="QuizText">
+                            <span>Q4.</span>
+                            <br>
+                            <!-- <span class="point">‘부족한 생활비를 위해 투잡을 뛰어야겠다’</span>는 뜻을 가진 신조어는? -->
+                            기념일에 애인과 레스토랑에 방문했다. <br>내가 보자마자 선택한 와인은?
+                        </div>
+
+                        <div class="Quizcontent Num4" data-swiper-parallax="-600">
+                            <input type="hidden" class="true">
+                            <div class="Quiz_anwer">풍미 가득한 레드와인</div>
+                        </div>
+
+                        <div class="Quizcontent Num4" data-swiper-parallax="-400">
+                            <input type="hidden" class="false">
+                            <div class="Quiz_anwer">톡톡쏘는 탄산! 스파클링 와인</div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- 5번 문항 -->
+                <div class="swiper-slide">
+                    <div class="QuizContent_area">
+                        <div class="QuizImg-area ScaleDiv" data-swiper-parallax="-900">
+                            <img src="img/quiz_5.jpg" alt="">
+                        </div>
+
+                        <div class="QuizText">
+                            <span>Q5.</span>
+                            <br>
+                            <!-- <span class="point">'통장에 월급이 들어오자마자 카드값과 세금 등으로 곧장 빠져나가는 현실'</span>을 반영한 신조어는? -->
+                            내가 평소 즐기는 술의 종류는?
+                        </div>
+                        <div class="Quizcontent Num5" data-swiper-parallax="-600">
+                            <div class="Quiz_anwer">술은 취하려고 먹지! 25도 이상</div>
+                            <input type="hidden" class="true">
+                        </div>
+                        <div class="Quizcontent Num5" data-swiper-parallax="-200">
+                            <div class="Quiz_anwer">술은 분위기지! 25도 이하</div>
+                            <input type="hidden" class="false">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5번 문항 -->
+                <div class="swiper-slide">
+                    <div class="QuizContent_area">
+                        <div class="QuizImg-area ScaleDiv" data-swiper-parallax="-900">
+                            <img src="img/quiz_6.jpg" alt="">
+                        </div>
+
+                        <div class="QuizText">
+                            <span>Q6.</span>
+                            <br>
+                            <!-- <span class="point">'통장에 월급이 들어오자마자 카드값과 세금 등으로 곧장 빠져나가는 현실'</span>을 반영한 신조어는? -->
+                            오늘은 분위기에 취한다~ 바에 방문한 당신, 과연 어떤 술을 고를 것인가!?
+                        </div>
+                        <div class="Quizcontent Num5" data-swiper-parallax="-600">
+                            <div class="Quiz_anwer">위스키, 브랜디</div>
+                            <input type="hidden" class="false">
+                        </div>
+                        <div class="Quizcontent Num5" data-swiper-parallax="-200">
+                            <div class="Quiz_anwer">보드카, 럼</div>
+                            <input type="hidden" class="true">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5번 문항 -->
+                <div class="swiper-slide">
+                    <div class="QuizContent_area">
+                        <div class="QuizImg-area ScaleDiv" data-swiper-parallax="-900">
+                            <img src="img/quiz_7.jpg" alt="">
+                        </div>
+
+                        <div class="QuizText">
+                            <span>Q7.</span>
+                            <br>
+                            <!-- <span class="point">'통장에 월급이 들어오자마자 카드값과 세금 등으로 곧장 빠져나가는 현실'</span>을 반영한 신조어는? -->
+                            일에 치이고 사람에 치여 힘든 하루를 보낸 당신, 퇴근하고 한 잔할 때 내가 선택한 장소는?
+                        </div>
+                        <div class="Quizcontent Num5" data-swiper-parallax="-600">
+                            <div class="Quiz_anwer">이게 바로 사람 사는 맛이지! 포장마차</div>
+                            <input type="hidden" class="true">
+                        </div>
+                        <div class="Quizcontent Num5" data-swiper-parallax="-200">
+                            <div class="Quiz_anwer">오늘은 플렉스를 하겠어! 고급 바</div>
+                            <input type="hidden" class="false">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5번 문항 -->
+                <div class="swiper-slide">
+                    <div class="QuizContent_area">
+                        <div class="QuizImg-area ScaleDiv" data-swiper-parallax="-900">
+                            <img src="img/quiz_8.jpg" alt="">
+                        </div>
+
+                        <div class="QuizText">
+                            <span>Q8.</span>
+                            <br>
+                            <!-- <span class="point">'통장에 월급이 들어오자마자 카드값과 세금 등으로 곧장 빠져나가는 현실'</span>을 반영한 신조어는? -->
+                            술에 있어서 가장 중요한 맛은?
+                        </div>
+                        <div class="Quizcontent Num5" data-swiper-parallax="-600">
+                            <div class="Quiz_anwer">술은 술맛으로 먹는거지! 고소한 맛</div>
+                            <input type="hidden" class="true">
+                        </div>
+                        <div class="Quizcontent Num5" data-swiper-parallax="-200">
+                            <div class="Quiz_anwer">나는 쓴게 싫어! 달달하고 상큼한 맛</div>
+                            <input type="hidden" class="false">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- Add Arrows -->
+            <div class="swiper-button-next"></div>
+            <!-- <div class="swiper-button-prev"></div> -->
+        </div>
+
+
+    </div>
+
+    <script>
+        $(document).on('click', '.last-contents', function () {
+
+            var Opacity = document.getElementsByClassName('swiper-slide');
+            var sum = 0;
+            //sum 칠 value 값
+            const target = $('.QuizContent_area .active input');
+            target.each(function () {
+                if (!isNaN($(this).val())) {
+                    sum += parseInt($(this).val());
+                }
+                setTimeout(function () {
+                    Opacity[Opacity.length - 1].style.opacity = "0";
+                    $('.swiper-pagination-fraction').css({
+                        "opacity": "0"
+                    });
+                }, 700);
+            });
+            //console.log(sum);
+            //const strurl = btoa(sum);
+            const strurl = sum;
+
+            var loading = document.getElementById("untree_co--overlayer");
+            loading.style.opacity = "1";
+            loading.style.visibility = "visible";
+            loading.classList.add('active');
+            $("#untree_co--overlayer").css({
+                "pointer-events": "auto"
+            });
+
+            setTimeout(function () {
+                window.location.href = "page.html?ScoreView=" + strurl;
+            }, 6000);
+
+
+
+        });
+    </script>
+    <!-- Swiper JS -->
+    <script src="js/swiper.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            touchRatio: 0,
+            slidesPerView: "auto",
+            allowTouchMove: false,
+            resistance: false,
+            speed: 1000,
+            //autoHeight: true, 
+            parallax: true,
+            pagination: {
+                el: ".swiper-pagination",
+                type: "fraction",
+                //type: "progressbar",
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+        Kakao.init('ddca0fafcdcd838ee2d45f097937b5d8');
+        
+        Kakao.Link.createDefaultButton({
+            container: '#kakao-link-btn',
+            objectType: 'feed',
+            content: {
+    title: '당신과 어울리는 술은?',
+    description: '멘탈테스트-이모저모',
+    imageUrl:'https://www.menteimo.com/ver18/img/main.jpg',
+    link: {
+                    mobileWebUrl: location.href,
+                    webUrl: location.href
+    }
+    },
+    
+    
+            buttons: [
+            {
+                title: '테스트하러 가기',
+                link: {
+                    mobileWebUrl: location.href,
+                    webUrl: location.href
+                }
+            }
+        ]
+        });
+    </script>
+</body>
+
+</html>
