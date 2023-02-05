@@ -22,13 +22,10 @@ def search_get():
     search_list = list(db.search_box.find({}, {'_id': False}))
     return jsonify({'search_box': search_list})
 
-@app.route("/?", methods=["GET"])
+@app.route("/finding", methods=["GET"])
 def finding_get():
-    searchs_receive = request.form['searchs_give']
-    data = list(db.search_box.find({}, {'_id': False}))
-    df = pd.DataFrame(data)
-    finding_list = df[df['productName'].str.contains(searchs_receive)]
 
+    finding_list = list(db.search_box.find({'productName':{'$regex':request.args.get["finding"]}}, {'_id': False}))
     return jsonify({'finding_box': finding_list})
 
 

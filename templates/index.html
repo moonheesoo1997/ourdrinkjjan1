@@ -75,7 +75,7 @@
     <script>
         $(document).ready(function () {
             listing();
-            searching();
+            finding();
         });
 
         function listing() {
@@ -109,14 +109,12 @@
             })
         }
 
-        function searching() {
+        function finding() {
             $('#cards-box').empty()
-            let searchs = $('#searchs').val()
-
             $.ajax({
                 type: 'GET',
-                url: '/?',
-                data: {searchs_give: searchs},
+                url: '/finding',
+                data: {},
                 success: function (response) {
                     let rows = response['finding_box']
                     for (let i = 0; i < rows.length; i++) {
@@ -156,8 +154,8 @@
     <nav class="navbar bg-light">
         <div class="container-fluid">
             <form class="d-flex" role="search" >
-                <input id="searchs" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button onclick="searching()" class="btn btn-outline-success" type="button">Search</button>
+                <input id="finding" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button onclick="finding()" class="btn btn-outline-success" type="button">Search</button>
             </form>
         </div>
     </nav>
