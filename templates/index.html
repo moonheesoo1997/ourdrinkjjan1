@@ -83,6 +83,7 @@
             $.ajax({
                 type: 'GET',
                 url: '/finding',
+                data: { test:'테스트' }
                 success: function (response) {
                     	//연결을 확인한다
                     let rows = response['finding_box']

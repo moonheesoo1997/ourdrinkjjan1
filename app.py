@@ -19,7 +19,8 @@ def home():
 
 @app.route("/finding", methods=["GET"])
 def finding_get():
-    x = request.args.get("alinfo", "", type=str)
+    print(request.args.get('test'))
+    request.args.get("alinfo", type=str)
     finding_list = list(db.search_box.find({'productName':{'$regex':x}},{'_id': False}))
     return jsonify({'finding_box': finding_list})
 
