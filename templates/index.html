@@ -72,19 +72,19 @@
 
 
     </style>
+
     <script>
-        $(document).ready(function () {
-            finding();
-        });
+        $(document).ready(
+            $('.cards_box').empty()
+        )
 
-
-        function finding() {
-            $('#cards-box').empty()
+        function addalList() {
+            $('.cards_box').empty()
             $.ajax({
                 type: 'GET',
                 url: '/finding',
-                data: {},
                 success: function (response) {
+                    	//연결을 확인한다
                     let rows = response['finding_box']
                     for (let i = 0; i < rows.length; i++) {
                         let intro = rows[i]['intro']
@@ -92,8 +92,13 @@
                         let type = rows[i]['type']
                         let imageLink = rows[i]['imageLink']
                         let alcohol = rows[i]['alcohol']
-
-                        let temp_html = `<div class="col">
+                        getMusicHtml(intro, productName, type, imageLink, alcohol)
+                    }
+                }
+            })
+        }
+        function getMusicHtml(intro, productName, type, imageLink, alcohol) {
+        let temp_html = `<div class="col">
                                             <div class="card">
                                                 <img src="${imageLink}"
                                                      class="card-img-top" alt="..." >
@@ -105,13 +110,11 @@
                                             </div>
                                         </div>`
                         $('#cards-box').append(temp_html)
-                    }
-                }
-            })
-        }
-
+    }
 
     </script>
+
+
     <title>메인 검색 페이지</title>
 </head>
 <body>
@@ -120,14 +123,11 @@
 </div>
 <div class="mytitle">
     <h1>우리술,짠</h1>
-    <nav class="navbar bg-light">
-        <div class="container-fluid">
-            <form class="d-flex" role="search">
-                <input id="finding" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button onclick="finding()" class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-        </div>
-    </nav>
+    <form action="methods">
+        <label for="alinfo">전통주 검색하기</label>
+        <input type="text" id="alinfo" class="whatToSearch" placeholder="검색" autocomplete="off">
+        <button type="button" onclick="addalList()" >검색</button>
+    </form>
 
     <div class="btns">
         <div class="d-grid gap-2 col-6 mx-auto" id="btns1">
