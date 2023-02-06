@@ -17,10 +17,6 @@ def home():
     return render_template('index.html')
 
 
-@app.route("/search", methods=["GET"])
-def search_get():
-    search_list = list(db.search_box.find({}, {'_id': False}))
-    return jsonify({'search_box': search_list})
 
 @app.route("/finding", methods=["GET"])
 def finding_get():

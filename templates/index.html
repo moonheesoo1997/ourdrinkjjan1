@@ -74,40 +74,9 @@
     </style>
     <script>
         $(document).ready(function () {
-            listing();
             finding();
         });
 
-        function listing() {
-            $.ajax({
-                type: 'GET',
-                url: '/search',
-                data: {},
-                success: function (response) {
-                    let rows = response['search_box']
-                    for (let i = 0; i < rows.length; i++) {
-                        let intro = rows[i]['intro']
-                        let productName = rows[i]['productName']
-                        let type = rows[i]['type']
-                        let imageLink = rows[i]['imageLink']
-                        let alcohol = rows[i]['alcohol']
-
-                        let temp_html = `<div class="col">
-                                            <div class="card">
-                                                <img src="${imageLink}"
-                                                     class="card-img-top" alt="..." >
-                                                <div class="card-body">
-                                                    <h5 class="card-title">${productName}</h5>
-                                                    <p class="card-text">${alcohol}도/${type}</p>
-                                                    <p class="mycoment">${intro}</p>
-                                                </div>
-                                            </div>
-                                        </div>`
-                        $('#cards-box').append(temp_html)
-                    }
-                }
-            })
-        }
 
         function finding() {
             $('#cards-box').empty()
@@ -155,7 +124,7 @@
         <div class="container-fluid">
             <form class="d-flex" role="search">
                 <input id="finding" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button onclick="finding()" class="btn btn-outline-success" type="button">Search</button>
+                <button onclick="finding()" class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </div>
     </nav>
