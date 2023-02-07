@@ -93,14 +93,15 @@
                         let type = rows[i]['type']
                         let imageLink = rows[i]['imageLink']
                         let alcohol = rows[i]['alcohol']
-                        getMusicHtml(intro, productName, type, imageLink, alcohol)
+                        let product_id = rows[i]['Productid']
+                        getMusicHtml(intro, productName, type, imageLink, alcohol,product_id)
                     }
                 }
             })
         }
-        function getMusicHtml(intro, productName, type, imageLink, alcohol) {
+        function getMusicHtml(intro, productName, type, imageLink, alcohol,product_id) {
         let temp_html = `<div class="col">
-                                            <div class="card">
+                                            <div class="card" onclick="window.location.href='/detail/<${product_id}>">
                                                 <img src="${imageLink}"
                                                      class="card-img-top" alt="..." >
                                                 <div class="card-body">
