@@ -75,44 +75,54 @@
     </style>
 
     <script>
-         $(document).ready(function () {
+        $(document).ready(function () {
             addalList();
         });
 
         function addalList() {
-            $('.cards_box').empty()
+
+            let alinfo = $('#alinfo').val()
             $.ajax({
                 type: 'GET',
                 url: '/finding',
+                data: {'alinfo': alinfo},
                 success: function (response) {
-                    	//연결을 확인한다
+                    $('#cards-box').empty()
+
                     let rows = response['finding_box']
+
+
                     for (let i = 0; i < rows.length; i++) {
-                        let intro = rows[i]['intro']
-                        let productName = rows[i]['productName']
-                        let type = rows[i]['type']
-                        let imageLink = rows[i]['imageLink']
-                        let alcohol = rows[i]['alcohol']
-                        let product_id = rows[i]['Productid']
-                        getMusicHtml(intro, productName, type, imageLink, alcohol,product_id)
+                        let ros = rows[i]
+                        let intro = ros['intro']
+                        let productName = ros['productName']
+                        let type = ros['type']
+                        let imageLink = ros['imageLink']
+                        let alcohol = ros['alcohol']
+                        let product_id = ros['Productid']
+                        getMusicHtml(intro, productName, type, imageLink, alcohol, product_id)
                     }
+
+
                 }
             })
         }
-        function getMusicHtml(intro, productName, type, imageLink, alcohol,product_id) {
-        let temp_html = `<div class="col">
-                                            <div class="card" onclick="window.location.href='/detail/<${product_id}>">
+
+        function getMusicHtml(intro, productName, type, imageLink, alcohol, product_id) {
+            let temp_html = `<div class="col">
+                                            <div class="card">
                                                 <img src="${imageLink}"
                                                      class="card-img-top" alt="..." >
                                                 <div class="card-body">
-                                                    <h5 class="card-title">${productName}</h5>
+                                                    <h5 class="card-title" onclick="window.location.href='/detail/<${product_id}>">${productName}</h5>
                                                     <p class="card-text">${alcohol}도/${type}</p>
                                                     <p class="mycoment">${intro}</p>
                                                 </div>
                                             </div>
                                         </div>`
-                        $('#cards-box').append(temp_html)
-    }
+            $('#cards-box').append(temp_html)
+            console.log(intro)
+        }
 
     </script>
 
@@ -128,7 +138,7 @@
     <form action="finding">
         <label for="alinfo">전통주 검색하기</label>
         <input type="text" id="alinfo" class="whatToSearch" placeholder="검색" autocomplete="off">
-        <button type="button" onclick="addalList()" >검색</button>
+        <button type="button" onclick="addalList()">검색</button>
     </form>
 
     <div class="btns">
