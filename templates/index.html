@@ -13,6 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
+    <link rel="icon" href="data:,">
     <style>
         .mytitle {
             background-color: whitesmoke;
@@ -74,16 +75,15 @@
     </style>
 
     <script>
-        $(document).ready(
-            $('.cards_box').empty()
-        )
+         $(document).ready(function () {
+            addalList();
+        });
 
         function addalList() {
             $('.cards_box').empty()
             $.ajax({
                 type: 'GET',
                 url: '/finding',
-                data: { test:'테스트' }
                 success: function (response) {
                     	//연결을 확인한다
                     let rows = response['finding_box']
@@ -124,7 +124,7 @@
 </div>
 <div class="mytitle">
     <h1>우리술,짠</h1>
-    <form action="methods">
+    <form action="finding">
         <label for="alinfo">전통주 검색하기</label>
         <input type="text" id="alinfo" class="whatToSearch" placeholder="검색" autocomplete="off">
         <button type="button" onclick="addalList()" >검색</button>
