@@ -23,6 +23,10 @@ def finding_get():
     finding_list = list(db.collect2.find({'productName':{'$regex':x}},{'_id': False}))
     return jsonify({'finding_box': finding_list})
 
+@app.route("/landing")
+def landing():
+    return render_template('survey.html')
+
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5003, debug=True)

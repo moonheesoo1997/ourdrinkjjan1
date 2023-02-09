@@ -57,19 +57,11 @@
         }
 
         #btns1 {
-            float: left;
+            float: center;
             width: 50%;
         }
 
-        #btns2 {
-            float: left;
-            width: 25%;
-        }
 
-        #btns3 {
-            float: left;
-            width: 25%;
-        }
 
 
     </style>
@@ -89,6 +81,7 @@
                 success: function (response) {
                     $('#cards-box').empty()
 
+
                     let rows = response['finding_box']
 
 
@@ -101,15 +94,17 @@
                         let alcohol = ros['alcohol']
                         let product_id = ros['Productid']
                         getMusicHtml(intro, productName, type, imageLink, alcohol, product_id)
+
+
                     }
 
 
-                }
-            })
+                    }
+                })
         }
 
-        function getMusicHtml(intro, productName, type, imageLink, alcohol, product_id) {
-            let temp_html = `<div class="col">
+            function getMusicHtml(intro, productName, type, imageLink, alcohol, product_id) {
+                let temp_html = `<div class="col">
                                             <div class="card">
                                                 <img src="${imageLink}"
                                                      class="card-img-top" alt="..." >
@@ -120,9 +115,13 @@
                                                 </div>
                                             </div>
                                         </div>`
-            $('#cards-box').append(temp_html)
-            console.log(intro)
-        }
+                $('#cards-box').append(temp_html)
+                console.log(intro)
+            }
+
+
+
+
 
     </script>
 
@@ -143,28 +142,11 @@
 
     <div class="btns">
         <div class="d-grid gap-2 col-6 mx-auto" id="btns1">
-            <button class="btn btn-primary" type="button">무엇을 검색할지 모르겠다면 설문하러 가기</button>
+            <a class="btn btn-primary" type="button" href="/landing">무엇을 검색할지 모르겠다면 설문하러 가기</a>
+
         </div>
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end" id="btns2">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                도수
-            </button>
-            <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item active" href="#">오름차순</a></li>
-                <li><a class="dropdown-item" href="#">내림차순</a></li>
-            </ul>
-        </div>
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end" id="btns3">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                좋아요
-            </button>
-            <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item active" href="#">오름차순</a></li>
-                <li><a class="dropdown-item" href="#">내림차순</a></li>
-            </ul>
-        </div>
+
+
     </div>
 </div>
 
