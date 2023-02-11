@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>우리 술, 짠</title>
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="/static/swiper.min.css">
+    <link rel="stylesheet" href="/static/reset.css">
+    <link rel="stylesheet" href="/static/survey.css">
+
+    <!-- META -->
+    <meta property="og:type" content="feed">
+    <meta property="og:title" content="당신과 어울리는 전통주는?">
+
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- cdn -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class = "boxx" >
+    <a class="search" type="button" href="/index" style = "color: black;">검색 바로가기</a>
+    </div>
+
+<script>
+
+    function start() {
+        var Starting = document.getElementById('start');
+        Starting.className += " NonDiv";
+        setTimeout(function () {
+            Starting.style.display = "none";
+        }, 700);
+        if (Starting.classList.contains("NonDiv")) {
+            document.getElementById('StartDiv').classList += ' StartDiv';
+        } else {
+            alert('다시 시도해주세요');
+        }
+        $('html, body').animate({
+            scrollTop: 0
+        }, 400);
+
+        $('.swiper-wrapper .swiper-slide').last().find('.Quizcontent3').addClass('last-contents');
+    }
+
+    function notyet() {
+        alert('구현 중');
+    }
+
+    function clip() {
+        var url = '';
+        var textarea = document.createElement("textarea");
+        document.body.appendChild(textarea);
+        url = window.document.location.href;
+        textarea.value = url;
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+        alert("URL이 복사되었습니다.")
+    }
+
+    function Nextslide() {
+
+    }
+
+    $(function () {
+
+        $('.Quizcontent3').off().on('click', function () {
+            $('.swiper-wrapper').css({
+                'pointer-events': 'none'
+            });
+
+            $(this).addClass('active');
+            $(this).siblings('.Quizcontent').addClass('UnActive');
+
+            setTimeout(function () {
+                swiper.slideNext();
+                return;
+            }, 400);
+
+
+            var QuizThis = $(this).addClass('active');
+            setTimeout(function () {
+                $('.swiper-wrapper').css({
+                    'pointer-events': 'auto'
+                });
+            }, 1500);
+        });
+
+    });
+
+
+</script>
+
+    <div id="untree_co--overlayer">
+        <div class="position-center">
+            <div class="loader loader-7"></div>
+
+            <div class="loader-text">결과 계산 중</div>
+        </div>
+    </div>
+
+<div class="wrap">
+    <div class="QuizContent_area aaaf" id="start">
+        <div class="QuizImg-area" style="box-shadow: none;">
+            <img src="/static/logo.png" alt="">
+
+            <div>
+                <h2 style="padding: 20px; text-decoration: solid; text-align: center;">당신과 어울리는 전통주는?</h2></div>
+
+            <div class="Quizcontent2 StartButton" onclick="start()">알아보러 가기</div>
+
+
+                <div class="Quizcontent4 border01" data-swiper-parallax="-200" onclick="clip()">링크복사 하기</div>
+
+            </div>
+         </div>
+
+
+        <!-- Swiper -->
+        <div class="swiper-container aaaf" id="StartDiv">
+            <div class="swiper-wrapper">
+
+                <!-- 1번 문항 -->
+                <div class="swiper-slide">
+                    <div class="QuizContent_area first-aniamtion">
+
+                        <div class="QuizText ScaleDiv">
+                            <span>Q1.</span>
+                            <br>어떤 술을 마셔보고 싶나요? <br>
+                        </div>
+
+
+                        <label class="Quizcontent" for="tak" data-swiper-parallax="-200">
+                            <div class="Quiz_anwer">
+                                <input class="Quizcontent3" id="tak" type="radio" name="type" value="탁주" placeholder="">
+                                전통주하면 막걸리지! 탁주</div>
+                        </label>
+
+
+
+                        <label class="Quizcontent ScaleDiv" data-swiper-parallax="-400" for="yak">
+                            <div class="Quiz_anwer">
+                             <input class="Quizcontent3" id="yak" type="radio" name="type" value="약주">
+                             맑은 술이 좋아! <b>약주/청주</b></div>
+                        </label>
+
+
+                        <label class="Quizcontent ScaleDiv" data-swiper-parallax="-600" for="gwa">
+                            <div class="Quiz_anwer">
+                                <input class="Quizcontent3" id="gwa" type="radio" name="type" value="과실주">
+                                과일향 가득! <b>과실주</b></div>
+                        </label>
+
+
+                        <label class="Quizcontent ScaleDiv" data-swiper-parallax="-800" for="jeung">
+                            <div class="Quiz_anwer">
+                                <input class="Quizcontent3" id="jeung" type="radio" name="type" value="증류주">
+                                술은 취하려고 마시는거지! <b>증류주</b></div>
+                        </label>
+
+                        <label class="Quizcontent ScaleDiv" data-swiper-parallax="-1000" for="other">
+                            <div class="Quiz_anwer">
+                                <input class="Quizcontent3" id="other" type="radio" name="type" value="기타">
+                                독특한 걸 마셔보고 싶어! <b>리큐르/기타</b></div>
+                        </label>
+
+
+                        <label class="Quizcontent ScaleDiv" data-swiper-parallax="-1200" for="any">
+                            <div class="Quiz_anwer">
+                                <input class="Quizcontent3" id="any" type="radio" name="type" value="random">
+                               다~ 좋아! <b>아무거나</b></div>
+                        </label>
+
+
+                    </div>
+                </div>
+
+                <!-- 2번 문항 -->
+
+                <div class="swiper-slide">
+                    <div class="QuizContent_area">
+
+                        <div class="QuizText">
+                            <span>Q2.</span>
+                            <br>
+                            어느 정도의 도수가 좋나요?
+                        </div>
+                        <label class="Quizcontent Num2" data-swiper-parallax="-200" for="ten">
+                            <div class="Quiz_anwer">
+                                <input class="Quizcontent3" id="ten" type="radio" name="alcohol" value="10">0~10%
+                                </div>
+                        </label>
+
+                        <label class="Quizcontent Num2" data-swiper-parallax="-400" for="twenty">
+                            <div class="Quiz_anwer">
+                                <input class="Quizcontent3" id="twenty" type="radio" name="alcohol" value="10~20">10~20%
+                            </div>
+                        </label>
+
+                        <label class="Quizcontent Num2" data-swiper-parallax="-600" for="thirty">
+                            <div class="Quiz_anwer">
+                                <input class="Quizcontent3" id="thirty" type="radio" name="alcohol" value="20~30">20~30%
+                            </div>
+                        </label>
+
+                        <label class="Quizcontent Num2" data-swiper-parallax="-800" for="fourty">
+                            <div class="Quiz_anwer">
+                                <input class="Quizcontent3" id="fourty" type="radio" name="alcohol" value="30~40">30~40%
+                            </div>
+                        </label>
+
+                        <label class="Quizcontent Num2" data-swiper-parallax="-1000" for="fifty">
+                            <div class="shape Quiz_anwer">
+                                <input class="Quizcontent3" id="fifty" type="radio" name="alcohol" value="40~50">40~50%
+                            </div>
+                        </label>
+
+                    </div>
+                </div>
+
+                <!-- 3번 문항 -->
+                <div class="swiper-slide">
+                    <div class="QuizContent_area">
+
+                        <div class="QuizText">
+                            <span>Q3.</span>
+                            <br>
+                            어떤 향이 좋나요?
+                        </div>
+
+                        <label class="Quizcontent Num3" data-swiper-parallax="-200" for="fruit">
+                            <div class="shape Quiz_anwer">
+                                <input class="Quizcontent3" id="fruit" type="radio" name="scent" value="과일"> 상큼한 과일향
+                            </div>
+                        </label>
+
+                        <label class="Quizcontent Num3" data-swiper-parallax="-400" for="flower">
+                            <div class="shape Quiz_anwer">
+                                <input class="Quizcontent3" id="flower" type="radio" name="scent" value="꽃향"> 향긋한 꽃향
+                            </div>
+                        </label>
+
+                        <label class="Quizcontent Num3" data-swiper-parallax="-600" for="grain">
+                            <div class="shape Quiz_anwer">
+                                <input class="Quizcontent3" id="grain" type="radio" name="scent" value="곡물"> 구수한 곡물향
+                            </div>
+                        </label>
+
+                        <label class="Quizcontent Num3" data-swiper-parallax="-800" for="nonesm">
+                            <div class="shape Quiz_anwer">
+                                <input class="Quizcontent3" id="nonesm" type="radio" name="scent" value="무향"> 향은 싫어! 무향
+                            </div>
+                        </label>
+
+                        <label class="Quizcontent Num3" data-swiper-parallax="-1000" for="allsm">
+                            <div class="shape Quiz_anwer">
+                                <input class="Quizcontent3" id="allsm" type="radio" name="scent" value="random"> 아무거나
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 4번 문항 -->
+                <div class="swiper-slide">
+                    <div class="QuizContent_area">
+
+
+                        <div class="QuizText">
+                            <span>Q4.</span>
+                            <br>
+                            술마실 때, 당신의 유형은?
+                        </div>
+
+                        <label class="Quizcontent Num4" data-swiper-parallax="-200" for="oneCha">
+                            <div class="Quiz_anwer">
+                                <input class="Quizcontent3" type="radio" id="oneCha">1차까지 간다</div>
+                         </label>
+
+                        <label class="Quizcontent Num4" data-swiper-parallax="-400" for="twoCha">
+                            <div class="Quiz_anwer">
+                                <input class="Quizcontent3" type="radio" id="twoCha">2차까지 간다</div>
+                        </label>
+
+                        <label class="Quizcontent Num4" data-swiper-parallax="-600" for="threeCha">
+                            <div class="Quiz_anwer">
+                                <input class="Quizcontent3" type="radio" id="threeCha">3차까지 간다</div>
+                        </label>
+
+                        <label class="Quizcontent Num4" data-swiper-parallax="-800" for="bam">
+                            <div class="Quiz_anwer">
+                                <input class="Quizcontent3" type="radio" id="bam">오늘 밤새~</div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 5번 문항 -->
+                <div class="swiper-slide">
+                    <div class="QuizContent_area">
+
+                        <div class="QuizText">
+                            <span>Q5.</span>
+                            <br>
+                            어떤 안주와 함께 마시나요?
+                        </div>
+                        <label class="Quizcontent Num5" data-swiper-parallax="-200" for="fish">
+                            <div class="Quiz_anwer">
+                                <input class="Quizcontent3" type="radio" id="fish">생선류</div>
+                        </label>
+                        <label class="Quizcontent Num5" data-swiper-parallax="-400" for="meet">
+                            <div class="Quiz_anwer">
+                                <input class="Quizcontent3" type="radio" id="meet">고기류</div>
+                        </label>
+                        <label class="Quizcontent Num5" data-swiper-parallax="-600" for="twee">
+                            <div class="Quiz_anwer">
+                                <input class="Quizcontent3" type="radio" id="twee">튀김류</div>
+                        </label>
+                        <label class="Quizcontent Num5" data-swiper-parallax="-800" for="gook">
+                            <div class="Quiz_anwer">
+                                <input class="Quizcontent3" type="radio" id="gook">국물류</div>
+                        </label>
+                        <label class="Quizcontent Num5" data-swiper-parallax="-1000" for="gwaja">
+                            <div class="Quiz_anwer">
+                                <input class="Quizcontent3" type="radio" id="gwaja">과자류
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 6번 문항 -->
+                <div class="swiper-slide">
+                    <div class="QuizContent_area">
+
+                        <div class="QuizText">
+                            <span>Q6.</span>
+                            <br>
+                            탄산을 좋아하나요?
+                        </div>
+                        <label class="Quizcontent Num5" data-swiper-parallax="-600" for="soda">
+                            <div class="shape Quiz_anwer">
+                                <input class="Quizcontent3" id="soda" type="radio" name="soda" value="O"> O
+                            </div>
+                        </label>
+
+                        <label class="Quizcontent Num5" data-swiper-parallax="-800" for="nosoda">
+                            <div class="shape Quiz_anwer">
+                                <input class="Quizcontent3" id="nosoda" type="radio" name="soda" value="X"> X
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 7번 문항 -->
+                <div class="swiper-slide">
+                    <div class="QuizContent_area">
+
+
+                        <div class="QuizText">
+                            <span>Q7.</span>
+                            <br>
+                            달달한 술이 좋나요?
+                        </div>
+                        <label class="Quizcontent Num5" data-swiper-parallax="-600" for="sweet">
+                            <div class="shape Quiz_anwer">
+                                <input class="Quizcontent3" id="sweet" type="radio" name="taste" value="O"> O
+                            </div>
+                        </label>
+
+                        <label class="Quizcontent Num5" data-swiper-parallax="-800" for="nosweet">
+                            <div class="shape Quiz_anwer">
+                                <input class="Quizcontent3" id="nosweet" type="radio" name="taste" value="X"> X
+                            </div>
+                        </label>
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- Add Pagination -->
+            <!-- <div class="swiper-pagination"></div> -->
+            <!-- Add Arrows -->
+            <div class="swiper-button-next"></div>
+            <!-- <div class="swiper-button-prev"></div> -->
+
+        </div>
+</div>
+
+    <script>
+        $(document).on('click', '.last-contents', function (key, value) {
+
+            // var Opacity = document.getElementsByClassName('swiper-slide');
+            // var sum = 0;
+
+            let json = new Object();
+            // let alcohol_survey = new Object();
+            // let scent_survey = new Object();
+            // let soda_survey = new Object();
+            // let taste_survey = new Object();
+
+                let type = $('input[name=type]:checked').val();
+                let alcohol = $('input[name=alcohol]:checked').val();
+                let scent = $('input[name=scent]:checked').val();
+                let soda = $('input[name=soda]:checked').val();
+                let taste = $('input[name=taste]:checked').val();
+
+                json.type = type;
+                json.alcohol = alcohol;
+                json.scent = scent;
+                json.soda = soda;
+                json.taste = taste;
+
+                localStorage.clear()
+
+                console.log(json)
+                JSON.stringify(json)
+                // localStorage.setItem("data", json)
+                localStorage.setItem("json", JSON.stringify(json))
+                // localStorage.setItem("data", JSON.stringify(json.type))
+
+                // localStorage.setItem("type", JSON.stringify(json.type))
+                // localStorage.setItem("alcohol", JSON.stringify(
+                //      ({'alcohol' : alcohol_survey.alcohol})
+                //     )
+                //  )
+                // localStorage.setItem("type", JSON.stringify(
+                //      ({'type' : type_survey.type})
+                //     )
+                //  )
+                // localStorage.setItem("type", JSON.stringify(
+                //      ({'type' : type_survey.type})
+                //     )
+                //  )
+
+
+
+                // alert(JSON.stringify(json));
+                // console.log(localStorage)
+                // console.log(localStorage.setItem)
+
+            // $(location).attr('href', 'http://127.0.0.1:5500/result');
+
+            // sum 칠 value 값
+            const target = $('.QuizContent_area.active input');
+            target.each(function () {
+                if (!isNaN($(this).val())) {
+                    sum += parseInt($(this).val());
+                }
+                setTimeout(function () {
+                    Opacity[Opacity.length - 1].style.opacity = "0";
+                    $('.swiper-pagination-fraction').css({
+                        "opacity": "0"
+                    });
+                }, 700);
+            });
+            // console.log(sum);
+            // const strurl = btoa(sum);
+            // const strurl = sum;
+
+            var loading = document.getElementById("untree_co--overlayer");
+            loading.style.opacity = "1";
+            loading.style.visibility = "visible";
+            loading.classList.add('active');
+            $("#untree_co--overlayer").css({
+                "pointer-events": "auto"
+            });
+
+            // setTimeout(function () {
+            //     window.location.href = "result.html?ScoreView=";
+            // }, 6000);
+            $(location).attr('href', 'http://127.0.0.1:5000/result');
+            // console.log(JSON.stringify(json))
+            // alert(localStorage)
+            // console.log(localStorage)
+
+        });
+        // $(location).attr('href', 'http://127.0.0.1:5500/result');
+
+    </script>
+    <!-- Swiper JS -->
+    <script src="/static/swiper.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            touchRatio: 0,
+            slidesPerView: "auto",
+            allowTouchMove: false,
+            resistance: false,
+            speed: 1000,
+            //autoHeight: true,
+            parallax: true,
+            pagination: {
+                el: ".swiper-pagination",
+                type: "fraction",
+                //type: "progressbar",
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+        // Kakao.init('ddca0fafcdcd838ee2d45f097937b5d8');
+
+        // Kakao.Link.createDefaultButton({
+        //     container: '#kakao-link-btn',
+        //     objectType: 'feed',
+        //     content: {
+        //         title: '당신과 어울리는 술은?',
+        //         description: '멘탈테스트-이모저모',
+        //         imageUrl: 'https://www.menteimo.com/ver18/img/main.jpg',
+        //         link: {
+        //             mobileWebUrl: location.href,
+        //             webUrl: location.href
+        //         }
+        //     },
+
+
+        //     buttons: [
+        //     {
+        //         title: '테스트하러 가기',
+        //         link: {
+        //             mobileWebUrl: location.href,
+        //             webUrl: location.href
+        //         }
+        //     }
+        // ]
+        // });
+
+    </script>
+</body>
+
+</html>

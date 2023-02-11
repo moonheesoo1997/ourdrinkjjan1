@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+    <title>우리 술, 짠</title>
+
+    <!-- META -->
+    <meta property="og:type" content="feed">
+    <meta property="og:title" content="당신과 어울리는 전통주는?">
+
+</head>
+<style>
+    @font-face {
+        font-family: 'S-CoreDream-3Light';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    * {
+        font-family: 'S-CoreDream-3Light', serif;
+    }
+
+    .mid {
+        background-color: whitesmoke;
+
+        width: 100%;
+        height: 100px;
+
+        background-position: center;
+        background-size: cover;
+
+        color: black;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+
+    }
+
+
+    /*.mid-in {*/
+    /*    max-width: 800px;*/
+    /*    width: 50%;*/
+
+    /*    background-color: orange;*/
+    /*    text-align: center;*/
+    /*    border-radius: 20px;*/
+    /*    padding: 10px 10px 10px 10px;*/
+
+    /*    height: auto;*/
+    /*    !*margin: auto;*!*/
+    /*    font-size: 30px;*/
+    /*    font-weight: bold;*/
+
+    /*}*/
+
+    /*    .mid-left {*/
+    /*        position: absolute;*/
+    /*    max-width: 100px;*/
+    /*    width: 50%;*/
+
+    /*    background-color: orange;*/
+    /*    text-align: center;*/
+    /*    border-radius: 20px;*/
+    /*    padding: 10px 10px 10px 10px;*/
+
+    /*    height: auto;*/
+    /*    !*margin: auto;*!*/
+    /*    font-size: 10px;*/
+    /*    font-weight: bold;*/
+    /*    !*float: left;*!*/
+
+    /*}*/
+    /*    .mid-right {*/
+    /*                    position: absolute;*/
+
+    /*    max-width: 100px;*/
+    /*    width: 50%;*/
+
+    /*    background-color: orange;*/
+    /*    text-align: center;*/
+    /*    border-radius: 20px;*/
+    /*    padding: 10px 10px 10px 10px;*/
+
+    /*    height: auto;*/
+    /*    !*margin: auto;*!*/
+    /*    font-size: 10px;*/
+    /*    font-weight: bold;*/
+    /*    !*float: right;*!*/
+
+    /*}*/
+
+    .bottom {
+        background-color: whitesmoke;
+
+        width: 100%;
+        height: 100px;
+
+        background-position: center;
+        background-size: cover;
+
+        color: black;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+
+    }
+
+    .bottom-in {
+        max-width: 700px;
+        width: 80%;
+
+        background-color: orange;
+        text-align: center;
+        border-radius: 20px;
+        padding: 10px 10px 10px 10px;
+
+        height: auto;
+        margin: auto;
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+
+    .card-img-top {
+
+        display: block;
+        margin: auto;
+        width: 200px;
+        height: 300px;
+        object-fit: scale-down;
+
+    }
+
+    .card-img-top {
+        object-fit: contain;
+    }
+
+    .wrap {
+
+        max-width: 1200px;
+        width: 95%;
+        margin: auto;
+        height: 100%;
+
+    }
+
+    .card-img-top {
+        min-height: 300px;
+        max-height: 300px;
+
+    }
+
+    .mycoment {
+        word-wrap: break-word;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .tt {
+        margin: fill;
+    }
+
+    #survey-box {
+        margin: fill;
+    }
+
+    .parent{
+    width: 90%;
+    margin: 10px auto;
+    display: flex;
+        height: auto;
+}
+
+.first {
+    flex:1;
+    width:30%;
+    box-sizing: border-box;
+
+
+    max-width: 120px;
+
+    background-color: white;
+
+    text-align: center;
+    border-radius: 20px;
+    padding: 10px 10px 10px 10px;
+
+    height: auto;
+    margin: auto;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.second{
+
+    flex:1;
+    margin: 0px 5%;
+    box-sizing: border-box;
+
+    max-width: 800px;
+    width: 50%;
+
+        background-color: ORANGE;
+        text-align: center;
+        border-radius: 20px;
+        padding: 10px 10px 10px 10px;
+
+        height: auto;
+        /*margin: auto;*/
+        font-size: 30px;
+        font-weight: bold;
+
+}
+
+.third{
+    flex:1;
+    width:30%;
+    box-sizing: border-box;
+
+
+    max-width: 120px;
+
+    background-color: white;
+
+    text-align: center;
+    border-radius: 20px;
+    padding: 10px 10px 10px 10px;
+
+    height: auto;
+    margin: auto;
+    font-size: 15px;
+    font-weight: bold;
+}
+</style>
+
+<script>
+    // const json = JSON.parse(localStorage.getItem('json'));
+    // console.log(localStorage)
+
+
+    const json = JSON.parse(localStorage.getItem('json'));
+    // console.log(json)
+    // console.log(json.type)
+
+    $(document).ready(function () {
+        listing_survey();
+    });
+
+    function listing_survey() {
+        // let x = $('x').val()
+        // x = json.type
+        let type = json.type
+        let scent = json.scent
+        // let soda = json.soda
+        // let taste = json.taste
+
+        $.ajax({
+            type: 'GET',
+            url: '/survey',
+            data: {
+                'type': type,
+                'scent': scent
+            },
+            success: function (response) {
+                let rows = response['collect2']
+
+                // let survey_list = random.sample(rows, 2)
+                for (let i = 0; i < rows.length; i++) {
+                    let product_id = rows[i]['Productid']
+                    let intro = rows[i]['intro']
+                    let productName = rows[i]['productName']
+                    let type = rows[i]['type']
+                    let imageLink = rows[i]['imageLink']
+                    let alcohol = rows[i]['alcohol']
+                    // 데이터를 가져올 때, 단맛, 향, 탄산 정도도 가져와서 호출
+
+
+                    let temp_html = `<div class="col">
+                                            <div class="card" onclick="window.location.href='/detail/${product_id}'" style="cursor: pointer;">
+                                                <img src="${imageLink}"
+                                                     class="card-img-top" alt="..." >
+                                                <div class="card-body">
+                                                    <h5 class="card-title" >${productName}</h5>
+                                                    <p class="card-text">${alcohol}도/${type}</p>
+                                                    <p class="mycoment"  >${intro}</p>
+                                                </div>
+                                            </div>
+                                        </div>`
+                    $('#survey-box').append(temp_html)
+
+                }
+            }
+        })
+
+
+    }
+
+
+    $(document).ready(function () {
+        listing_random();
+    });
+
+    function listing_random() {
+        let type_random = json.type
+        $.ajax({
+            type: 'GET',
+            url: '/random',
+            data: {'type': type_random},
+            success: function (response) {
+                let rows = response['collect2']
+                // let survey_list = random.sample(rows, 2)
+                for (let i = 0; i < rows.length; i++) {
+                    let product_id = rows[i]['Productid']
+                    let intro = rows[i]['intro']
+                    let productName = rows[i]['productName']
+                    let type = rows[i]['type']
+                    let imageLink = rows[i]['imageLink']
+                    let alcohol = rows[i]['alcohol']
+
+                    let temp_html = `<div class="col">
+                                            <div class="card" onclick="window.location.href='/detail/${product_id}'" style="cursor: pointer;">
+                                                <img src="${imageLink}"
+                                                     class="card-img-top" alt="..." >
+                                                <div class="card-body">
+                                                    <h5 class="card-title" >${productName}</h5>
+                                                    <p class="card-text">${alcohol}도/${type}</p>
+                                                    <p class="mycoment"  >${intro}</p>
+                                                </div>
+                                            </div>
+                                        </div>`
+                    $('#random-box').append(temp_html)
+
+                }
+            }
+        })
+        localStorage.clear()
+
+    }
+
+
+</script>
+<body>
+<div>
+    <div class="mid">
+        <div class="parent">
+            <div class="first" onclick="window.location.href='/'" style="cursor: pointer;">설문하러 가기</div>
+            <div class="second">
+                당신에게 어울리는 전통주는!
+            </div>
+            <div class="third" onclick="window.location.href='/index'" style="cursor: pointer;">검색하러 가기</div>
+        </div>
+    </div>
+
+        <div class="tt">
+            <div class="wrap">
+                <div class="row row-cols-1 row-cols-md-4 g-4" id="survey-box">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-1">
+        <div class="bottom">
+            <div class="bottom-in">
+                다른 전통주가 궁금하다면?
+            </div>
+        </div>
+        <div>
+            <div class="wrap">
+                <div class="row row-cols-1 row-cols-md-4 g-4" id="random-box">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>

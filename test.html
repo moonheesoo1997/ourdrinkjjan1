@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+</head>
+<style>
+    .img{
+        width: 300px;
+    }
+</style>
+<body>
+    <p id="demo"></p><br>
+    <button type="button">클릭</button>
+    <div id="target"></div>
+
+    <script>
+
+        let a = 10;
+        let b = 20;
+        let c = 30;
+        let d = 40;
+        
+        dosoo = $(input[name = alcohol]).checked.val();
+
+            if (dosoo == "0~10") {
+                dosoo = a > b;
+            } else if (dosoo == "10~20") {
+                dosoo = b > c;
+            } else if (dosoo == "20~30") {
+                dosoo = c > d;
+            } else if (dosoo == "30~40")
+                dosoo == 
+            
+
+
+ $(document).ready(function () {
+
+        $.getJSON('sool.json', function (data) {
+
+            var html = [];
+
+            $.each(data, function (i, item) {
+                if(item.type === ".tak"){
+                    html.push('<div>');
+                    html.push('<h3>' + item.productName + '</h3>');
+                    html.push('<img class="img" src="'+ item.imageLink +'" alt="">');
+                    html.push('<div >' + item.alcohol + '</div>');
+                    html.push('</div>');
+
+                }
+                
+            $('#target').html(html.join(''));
+
+
+                //html.push('<li id="' + key + '">' + val + '</li>');
+            });
+
+            console.log(html);
+
+
+        });
+    });
+    </script>
+</body>
+</html>
