@@ -127,13 +127,63 @@
             margin-top: 10px;
             margin-bottom: 10px;
         }
+
+        .third {
+            flex: 1;
+            width: 30%;
+            box-sizing: border-box;
+
+
+            max-width: 120px;
+
+            background-color: white;
+
+            text-align: center;
+            border-radius: 20px;
+            padding: 10px 10px 10px 10px;
+
+            height: auto;
+            margin: auto;
+            font-size: 15px;
+        }
+        .parent {
+            width: 90%;
+            margin: 10px auto;
+            display: flex;
+            height: auto;
+        }
+
+        .first {
+            flex: 1;
+            width: 30%;
+            box-sizing: border-box;
+
+
+            max-width: 120px;
+
+            background-color: white;
+
+            text-align: center;
+            border-radius: 20px;
+            padding: 10px 10px 10px 10px;
+
+            height: auto;
+            margin: auto;
+            font-size: 15px;
+            font-weight: bold;
+        }
     </style>
 
 </head>
 <body>
+
 <div class="mypic">
+    <div class="parent">
+    <div class="first" onclick="window.location.href='/'" style="cursor: pointer;">설문하러 가기</div>
         <h1 class="soolname">{{Productname}}</h1>
+        <div class="third" onclick="window.location.href='/index'" style="cursor: pointer;">검색하러 가기</div>
     </div>
+</div>
 
     <div class="line">
         <hr>
@@ -310,14 +360,14 @@
     }
 
     function shareTwitter() {
-      let url = encodeURIComponent('http://127.0.0.1:5012/detail/{{ Productid }}');
-      let title = '나만의 전통주 추천';
+      let url = encodeURIComponent('http://pg-master.shop/detail/{{ Productid }}');
+      let title = '내 취향에 어울리는 전통주는?';
       window.open(`https://twitter.com/intent/tweet?url=${url}&text=${title}`,'나만의 전통주 추천!', 'width=400, height=400');
   }
 
     function shareFacebook() {
-      let url = encodeURIComponent('http://127.0.0.1:5012/detail/{{ Productid }}');
-      let title = '나만의 전통주 추천';
+      let url = encodeURIComponent('http://pg-master.shop/detail/{{ Productid }}');
+      let title = '내 취향에 어울리는 전통주는?';
       window.open(`http://www.facebook.com/sharer.php?u=${url}&t=${title}`, '나만의 전통주 추천!', 'width=400, height=400');
   }
 </script>
